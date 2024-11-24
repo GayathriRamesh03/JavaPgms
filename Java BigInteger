@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;  // Import BigInteger class
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Read two BigInteger inputs
+        BigInteger bigInt1 = sc.nextBigInteger();
+        BigInteger bigInt2 = sc.nextBigInteger();
+        
+        // Perform addition and multiplication
+        BigInteger sum = bigInt1.add(bigInt2);
+        BigInteger product = bigInt1.multiply(bigInt2);
+        
+        // Output the results
+        System.out.println(sum);
+        System.out.println(product);
+    }
+}
