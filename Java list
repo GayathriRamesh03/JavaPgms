@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        try (Scanner scan = new Scanner(System.in)) {
+            int l = scan.nextInt();  // Length of the list
+
+            List<Integer> list = new ArrayList<>(l);
+            for (int i = 0; i < l; i++) {
+                list.add(scan.nextInt());  // Populate the list
+            }
+
+            int q = scan.nextInt();  // Number of queries
+
+            // Processing each query
+            for (int i = 0; i < q; i++) {
+                String queryType = scan.next();  // Read the query type (Insert/Delete)
+
+                if ("Insert".equalsIgnoreCase(queryType)) {
+                    int index = scan.nextInt();  // Index to insert at
+                    int value = scan.nextInt();  // Value to insert
+                    list.add(index, value);  // Insert value at index
+                }
+
+                if ("Delete".equalsIgnoreCase(queryType)) {
+                    int index = scan.nextInt();  // Index to delete
+                    list.remove(index);  // Remove element at index
+                }
+            }
+
+            // Print the modified list using a regular loop instead of lambda
+            for (int i = 0; i < list.size(); i++) {
+                System.out.print(list.get(i) + " ");
+            }
+        }
+    }
+}
