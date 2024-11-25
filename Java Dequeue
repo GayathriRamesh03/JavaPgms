@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        Deque<Integer> deque = new ArrayDeque<>();
+        HashSet<Integer> uniqueSet = new HashSet<>();
+        
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[] arr = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            arr[i] = in.nextInt();
+        }
+        
+        int maxUnique = 0; // To store the maximum number of unique integers
+        
+        // Sliding window with deque and set
+        for (int i = 0; i < n; i++) {
+            deque.addLast(arr[i]);
+            uniqueSet.add(arr[i]);
+            
+            // If the window size exceeds `m`, remove the oldest element
+            if (deque.size() > m) {
+                int removed = deque.removeFirst();
+                if (!deque.contains(removed)) {
+                    uniqueSet.remove(removed);
+                }
+            }
+            
+            // Update the maximum unique count
+            if (deque.size() == m) {
+                maxUnique = Math.max(maxUnique, uniqueSet.size());
+            }
+        }
+        
+        System.out.println(maxUnique);
+    }
+}
