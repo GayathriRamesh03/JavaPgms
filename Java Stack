@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String input = sc.next();
+            System.out.println(validate(input));
+        }
+    }
+
+    public static boolean validate(String input) {
+        Stack<Character> stack = new Stack<>(); // Use stack for character data type
+        for (char c : input.toCharArray()) {  // Directly iterate over the characters
+            switch (c) {
+                case '(':
+                case '{':
+                case '[':
+                    stack.push(c);  // Push opening brackets onto the stack
+                    break;
+                case ')':
+                    if (stack.isEmpty() || stack.peek() != '(') {
+                        return false;  // Mismatch or empty stack for closing parenthesis
+                    }
+                    stack.pop();
+                    break;
+                case '}':
+                    if (stack.isEmpty() || stack.peek() != '{') {
+                        return false;  // Mismatch or empty stack for closing brace
+                    }
+                    stack.pop();
+                    break;
+                case ']':
+                    if (stack.isEmpty() || stack.peek() != '[') {
+                        return false;  // Mismatch or empty stack for closing square bracket
+                    }
+                    stack.pop();
+                    break;
+            }
+        }
+        return stack.isEmpty();  // If the stack is empty, all brackets are matched
+    }
+}
